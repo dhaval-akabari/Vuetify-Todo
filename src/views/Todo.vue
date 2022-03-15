@@ -2,7 +2,7 @@
   <div class="home">
     <AddTaskField />
 
-    <ListTasks v-if="getTasks.length" />
+    <ListTasks v-if="filteredTasks.length" />
     <NoTasks v-else />
   </div>
 </template>
@@ -20,7 +20,7 @@ export default {
     NoTasks,
   },
   computed: {
-    ...mapGetters(["getTasks"]),
+    ...mapGetters(["filteredTasks"]),
   },
 };
 </script>

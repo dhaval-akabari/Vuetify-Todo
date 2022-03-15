@@ -25,12 +25,16 @@ export default new Vuex.Store({
         dueDate: null,
       },
     ],
+    search: null,
     snackbar: {
       show: false,
       text: "",
     },
   },
   mutations: {
+    setSearch(state, value) {
+      state.search = value;
+    },
     addTask(state, title) {
       state.tasks.push({
         id: Date.now(),
@@ -49,6 +53,10 @@ export default new Vuex.Store({
     updateTask(state, payload) {
       let task = state.tasks.filter((task) => task.id === payload.id)[0];
       task.title = payload.title;
+    },
+    saveDueDate(state, payload) {
+      let task = state.tasks.filter((task) => task.id === payload.id)[0];
+      task.dueDate = payload.dueDate;
     },
     showSnackbar(state, text) {
       let timeout = 0;
@@ -78,10 +86,19 @@ export default new Vuex.Store({
       context.commit("updateTask", payload);
       context.commit("showSnackbar", "Task updated!");
     },
+    saveDueDate(context, payload) {
+      context.commit("saveDueDate", payload);
+      context.commit("showSnackbar", "Due Date addedd!");
+    },
   },
   getters: {
-    getTasks(state) {
-      return state.tasks;
+    filteredTasks(state) {
+      if (!state.search) {
+        return state.tasks;
+      }
+      return state.tasks.filter((task) =>
+        task.title.toLowerCase().includes(state.search.toLowerCase())
+      );
     },
   },
 });

@@ -17,39 +17,27 @@
             >{{ task.title }}</v-list-item-title
           >
         </v-list-item-content>
+        <v-list-item-action v-if="task.dueDate">
+          <v-list-item-action-text>
+            <v-icon small>mdi-calendar</v-icon>
+            {{ task.dueDate }}
+          </v-list-item-action-text>
+        </v-list-item-action>
         <v-list-item-action>
-          <!-- <v-btn @click.stop="dialog.delete = true" icon>
-            <v-icon color="red lighten-1">mdi-delete</v-icon>
-          </v-btn> -->
-          <TaskActions />
+          <TaskActions :task="task" />
         </v-list-item-action>
       </template>
     </v-list-item>
     <v-divider></v-divider>
-
-    <DeleteDialog
-      v-if="dialog.delete"
-      :taskId="task.id"
-      @close="dialog.delete = false"
-    />
   </div>
 </template>
 
 <script>
-import DeleteDialog from "@/components/Shared/DeleteDialog";
 import TaskActions from "@/components/Todo/TaskActions";
 export default {
   props: ["task"],
   components: {
-    DeleteDialog,
     TaskActions,
-  },
-  data() {
-    return {
-      dialog: {
-        delete: false,
-      },
-    };
   },
   methods: {
     doneTask(id) {

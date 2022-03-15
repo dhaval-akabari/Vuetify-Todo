@@ -5,11 +5,16 @@
     outlined
     label="Add task"
     append-icon="mdi-plus-circle"
-    hide-details
+    hide-details="auto"
     clearable
-    @click:append="addTask"
     @keyup.enter="addTask"
-  ></v-text-field>
+  >
+    <template v-slot:append>
+      <v-icon color="primary" @click="addTask" :disabled="!task"
+        >mdi-plus</v-icon
+      >
+    </template>
+  </v-text-field>
 </template>
 
 <script>

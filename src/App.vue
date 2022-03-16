@@ -60,7 +60,7 @@
         </v-row>
         <v-row>
           <v-app-bar-title class="text-h4 ml-4 mt-5"
-            >Vuetify Todo</v-app-bar-title
+            >{{ $store.state.appTitle }}</v-app-bar-title
           >
         </v-row>
         <v-row>

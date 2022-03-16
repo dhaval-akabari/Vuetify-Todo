@@ -27,6 +27,7 @@ export default new Vuex.Store({
       },
     ],
     search: null,
+    sorting: false,
     snackbar: {
       show: false,
       text: "",
@@ -72,6 +73,9 @@ export default new Vuex.Store({
     },
     hideSnackbar(state) {
       state.snackbar.show = false;
+    },
+    toggleSorting(state) {
+      state.sorting = !state.sorting;
     },
   },
   actions: {

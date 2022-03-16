@@ -77,6 +77,13 @@ export default {
             this.dialog.delete = true;
           },
         },
+        {
+          title: "Sort",
+          icon: "mdi-drag-horizontal-variant",
+          click() {
+            this.$store.commit("toggleSorting");
+          },
+        },
       ],
     };
   },

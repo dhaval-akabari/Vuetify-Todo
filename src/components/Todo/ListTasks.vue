@@ -1,7 +1,11 @@
 <template>
   <v-list flat>
-    <SingleTask v-for="task in filteredTasks" :key="task.id" :task="task" />
-    <div v-if="$store.state.search" class="pl-3 pt-3">
+    <SingleTask 
+      v-for="task in filteredTasks" 
+      :key="task.id" 
+      :task="task" 
+    />
+    <div v-if="$store.state.search" class="pl-3 pt-3 text--secondary">
       {{ filteredTasks.length }} task(s) found
     </div>
   </v-list>

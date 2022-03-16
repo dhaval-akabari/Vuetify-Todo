@@ -3,6 +3,8 @@
     <v-list-item
       @click="doneTask(task.id)"
       :class="{ 'blue lighten-5': task.done }"
+      class="white"
+      :ripple="false"
     >
       <template v-slot:default>
         <v-list-item-action>
@@ -23,9 +25,12 @@
             {{ task.dueDate | niceDate }}
           </v-list-item-action-text>
         </v-list-item-action>
+
         <v-list-item-action>
           <TaskActions :task="task" />
         </v-list-item-action>
+
+        <!-- sort by dragging -->
         <v-list-item-action v-if="$store.state.sorting">
           <v-btn icon class="handle">
             <v-icon>mdi-drag-horizontal-variant</v-icon>
@@ -57,3 +62,10 @@ export default {
   },
 };
 </script>
+
+<style lang="sass">
+.sortable-ghost
+  opacity: 0
+.sortable-chosen
+  border: 1px solid rgba(0, 0, 0, 0.3)
+</style>

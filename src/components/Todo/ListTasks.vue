@@ -1,13 +1,7 @@
 <template>
   <v-list flat>
-    <draggable 
-      :list="filteredTasks" 
-      handle=".handle"
-    >
-      <SingleTask 
-        v-for="task in filteredTasks" 
-        :key="task.id" 
-        :task="task" />
+    <draggable v-model="tasks" handle=".handle">
+      <SingleTask v-for="task in tasks" :key="task.id" :task="task" />
     </draggable>
     <div v-if="$store.state.search" class="pl-3 pt-3 text--secondary">
       {{ filteredTasks.length }} task(s) found
@@ -26,6 +20,14 @@ export default {
   },
   computed: {
     ...mapGetters(["filteredTasks"]),
+    tasks: {
+      get() {
+        return this.filteredTasks;
+      },
+      set(value) {
+        this.$store.commit("setSortedTasks", value);
+      },
+    },
   },
 };
 </script>

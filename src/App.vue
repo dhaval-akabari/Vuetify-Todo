@@ -95,6 +95,9 @@ export default {
       ],
     };
   },
+  mounted() {
+    this.$store.dispatch('getTasks');
+  }
 };
 </script>
 
